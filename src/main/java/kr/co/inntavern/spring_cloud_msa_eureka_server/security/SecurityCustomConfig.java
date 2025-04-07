@@ -25,7 +25,11 @@ public class SecurityCustomConfig {
         httpSecurity
                 .csrf((auth)-> auth.disable());
         httpSecurity
-                .authorizeHttpRequests((auth)-> auth.anyRequest().authenticated());
+                .authorizeHttpRequests((auth)->
+                        auth
+                                .requestMatchers("/eureka/**").
+                        authenticated()
+                                .anyRequest().authenticated());
         httpSecurity
                 .httpBasic(Customizer.withDefaults());
 
